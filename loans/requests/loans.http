@@ -1,0 +1,14 @@
+### Create a new loan
+POST http://localhost:8090/api/create?mobileNumber=4354437687
+
+### Fetch loan details by mobile number
+GET http://localhost:8090/api/fetch?mobileNumber=4354437687
+
+### Update loan details (put the real loanNumber from the fetch response in update-loan.json)
+PUT http://localhost:8090/api/update
+Content-Type: application/json
+
+< ./update-loan.json
+
+### Delete loan by mobile number
+DELETE http://localhost:8090/api/delete?mobileNumber=4354437687

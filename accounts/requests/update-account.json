@@ -1,0 +1,10 @@
+{
+  "name": "Saud Updated",
+  "email": "saud.updated@example.com",
+  "mobileNumber": "9876543210",
+  "accountsDto": {
+    "accountNumber": 10433078871,
+    "accountType": "Current",
+    "branchAddress": "456 Park Avenue, New York"
+  }
+}

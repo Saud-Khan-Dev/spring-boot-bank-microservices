@@ -1,0 +1,17 @@
+### Create a new account
+POST http://localhost:8080/api/create
+Content-Type: application/json
+
+< ./create-account.json
+
+### Fetch account details by mobile number
+GET http://localhost:8080/api/fetch?mobileNumber=10433078871
+
+### Update account details (put the real accountNumber from the fetch response in update-account.json)
+PUT http://localhost:8080/api/update
+Content-Type: application/json
+
+< ./update-account.json
+
+### Delete account by mobile number
+DELETE http://localhost:8080/api/delete?mobileNumber=9876543210

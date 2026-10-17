@@ -1,0 +1,14 @@
+### Create a new card
+POST http://localhost:9090/api/create?mobileNumber=4354437687
+
+### Fetch card details by mobile number
+GET http://localhost:9090/api/fetch?mobileNumber=4354437687
+
+### Update card details (put the real cardNumber from the fetch response in update-card.json)
+PUT http://localhost:9090/api/update
+Content-Type: application/json
+
+< ./update-card.json
+
+### Delete card by mobile number
+DELETE http://localhost:9090/api/delete?mobileNumber=4354437687

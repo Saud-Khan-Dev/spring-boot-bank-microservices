@@ -1,0 +1,10 @@
+# Local editor / tool settings (machine-specific)
+.claude/
+.vscode/
+.idea/
+
+# Build output (each service also has its own .gitignore)
+target/
+
+# OS files
+.DS_Store
