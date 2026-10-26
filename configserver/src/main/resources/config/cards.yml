@@ -1,0 +1,13 @@
+build:
+  info:
+    name: cards
+    version: 3.0.0
+
+cards:
+  message: "Welcome to the Cards Microservice Default APIs"
+  contactDetails:
+    name: "Saud"
+    email: "saud@gmail.com"
+  onCallSupport:
+    - (555) 555-5555
+    - (234) 234-0016

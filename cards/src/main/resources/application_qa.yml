@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: qa
+
+
+build:
+  info:
+    name: cards
+    version: 2.0.0
+
+cards:
+  message: "Welcome to the Cards Microservice QA APIs"
+  contactDetails:
+    name: "Saud - QA Lead"
+    email: "saud@gmail.com"
+  onCallSupport:
+    - (666) 666-6665
+    - (333) 234-0016

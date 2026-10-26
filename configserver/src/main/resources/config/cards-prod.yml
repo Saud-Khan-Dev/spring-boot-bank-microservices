@@ -1,0 +1,13 @@
+build:
+  info:
+    name: cards
+    version: 1.0.0
+
+cards:
+  message: "Welcome to the Cards Microservice Prod APIs"
+  contactDetails:
+    name: "Saud - Prod Lead"
+    email: "saud@gmail.com"
+  onCallSupport:
+    - (666) 666-6665
+    - (333) 234-0016

@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+
+build:
+  info:
+    name: accounts
+    version: 1.0.0
+
+accounts:
+  message: "Welcome to the Accounts Microservice Prod APIs"
+  contactDetails:
+    name: "Saud - Prod Lead"
+    email: "saud@gmail.com"
+  onCallSupport:
+    - (666) 666-6665
+    - (333) 234-0016

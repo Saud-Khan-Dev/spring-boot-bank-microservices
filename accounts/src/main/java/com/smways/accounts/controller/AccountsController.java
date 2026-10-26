@@ -1,6 +1,8 @@
 package com.smways.accounts.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smways.accounts.constants.AccountsConstants;
+import com.smways.accounts.dto.AccountsContactDto;
 import com.smways.accounts.dto.CustomersDto;
 import com.smways.accounts.dto.ErrorResponseDto;
 import com.smways.accounts.dto.ResponseDto;
@@ -49,6 +52,12 @@ public class AccountsController {
     @Value("${build.info.version}") 
     private String buildVersion;
 
+    @Autowired
+    private Environment environment;
+
+
+    @Autowired
+    private AccountsContactDto accountsContactDto;
 
 
     @Operation(
@@ -171,6 +180,25 @@ public class AccountsController {
         return ResponseEntity
                   .status(HttpStatus.OK)
                   .body(new ResponseDto(AccountsConstants.STATUS_200, buildVersion));
+    }
+
+
+
+    @GetMapping("/java-version")   
+    public ResponseEntity<ResponseDto> getBuildInfoFromEnv() {
+        String buildVersionFromEnv = environment.getProperty("JAVA_HOME");
+        return ResponseEntity
+                  .status(HttpStatus.OK)
+                  .body(new ResponseDto(AccountsConstants.STATUS_200, buildVersionFromEnv));
+    }
+
+
+    @GetMapping ("/contact-details")
+    public ResponseEntity<AccountsContactDto> getContactDetails(){
+       
+        return ResponseEntity
+                  .status(HttpStatus.OK)
+                  .body(accountsContactDto);
     }
 
 }

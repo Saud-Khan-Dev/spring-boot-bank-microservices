@@ -1,5 +1,8 @@
 package com.smways.cards.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smways.cards.constants.CardsConstants;
+import com.smways.cards.dto.CardsContactDto;
 import com.smways.cards.dto.ErrorResponseDto;
 import com.smways.cards.dto.CardsDto;
 import com.smways.cards.dto.ResponseDto;
@@ -27,7 +31,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 
 
 @Tag(
@@ -35,12 +38,26 @@ import lombok.AllArgsConstructor;
     description = "CRUD REST APIs to CREATE, FETCH, UPDATE and DELETE card details"
 )
 @RestController
-@AllArgsConstructor
 @RequestMapping(path = "/api", produces = { MediaType.APPLICATION_JSON_VALUE })
 @Validated
 public class CardsController {
 
     private ICardsService iCardsService;
+
+
+    public CardsController(ICardsService iCardsService) {
+        this.iCardsService = iCardsService;
+    }
+
+    @Value("${build.info.version}")
+    private String buildVersion;
+
+    @Autowired
+    private Environment environment;
+
+
+    @Autowired
+    private CardsContactDto cardsContactDto;
 
 
     @Operation(
@@ -153,6 +170,31 @@ public class CardsController {
                       .status(HttpStatus.EXPECTATION_FAILED)
                       .body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_DELETE));
         }
+    }
+
+    @GetMapping ("/build-info")
+    public ResponseEntity<ResponseDto> getBuildInfo() {
+        return ResponseEntity
+                  .status(HttpStatus.OK)
+                  .body(new ResponseDto(CardsConstants.STATUS_200, buildVersion));
+    }
+
+
+    @GetMapping("/java-version")
+    public ResponseEntity<ResponseDto> getBuildInfoFromEnv() {
+        String buildVersionFromEnv = environment.getProperty("JAVA_HOME");
+        return ResponseEntity
+                  .status(HttpStatus.OK)
+                  .body(new ResponseDto(CardsConstants.STATUS_200, buildVersionFromEnv));
+    }
+
+
+    @GetMapping ("/contact-details")
+    public ResponseEntity<CardsContactDto> getContactDetails(){
+
+        return ResponseEntity
+                  .status(HttpStatus.OK)
+                  .body(cardsContactDto);
     }
 
 }

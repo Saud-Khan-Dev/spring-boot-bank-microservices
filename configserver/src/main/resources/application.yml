@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+    # "native" = read config files from the classpath/file system instead of a Git repo
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: "classpath:/config"
+
+server:
+  port: 8071
